@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f3eb">
+  <meta name="description" content="Интерактивный тренажёр по множествам и отношениям: упорядоченные пары, матрица, граф и свойства отношения.">
+  <title>Множества и отношения</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#lab">Перейти к тренажёру</a>
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="brand"><span class="brand-mark" aria-hidden="true">∈</span><span>Множества и отношения</span></div>
+      <span class="header-formula">R ⊆ A × A</span>
+    </div>
+  </header>
+
+  <main id="lab">
+    <section class="examples-section" aria-labelledby="examples-title">
+      <div class="section-heading"><h1 id="examples-title">Выберите пример отношения</h1><p>Примеры для A = {a, b, c}. Затем меняйте пары вручную.</p></div>
+      <div id="example-buttons" class="example-grid" aria-label="Примеры отношений"></div>
+      <p id="example-note" class="example-note" aria-live="polite"></p>
+    </section>
+
+    <section class="lab-section" aria-labelledby="lab-title">
+      <div class="section-heading lab-heading"><h2 id="lab-title">Одно отношение — четыре представления</h2><p>Нажмите на пару или ячейку матрицы — выбор сразу изменится во всех представлениях.</p></div>
+
+      <div class="set-toolbar">
+        <div class="set-toolbar-text"><strong>Множество A</strong><span id="set-notation">A = {a, b, c}</span></div>
+        <div class="set-choice" role="group" aria-label="Выберите элементы множества A">
+          <button type="button" class="set-button" data-size="3" aria-pressed="true">A = {a, b, c}</button>
+          <button type="button" class="set-button" data-size="4" aria-pressed="false">A = {a, b, c, d}</button>
+        </div>
+      </div>
+
+      <div class="workbench-grid">
+        <section class="panel product-panel" aria-labelledby="product-title">
+          <div class="panel-head"><span class="view-number">1</span><div><h3 id="product-title">Декартово произведение</h3><p id="product-summary">В A × A — 9 упорядоченных пар</p></div></div>
+          <p class="notation-lead">A × A =</p>
+          <div id="product-pairs" class="pair-grid" aria-label="Декартово произведение A на A"></div>
+          <p class="panel-note">Порядок важен: (a, b) и (b, a) — разные пары.</p>
+        </section>
+
+        <section class="panel relation-panel" aria-labelledby="relation-title">
+          <div class="panel-head"><span class="view-number">2</span><div><h3 id="relation-title">Отношение R</h3><p id="relation-count">Выбрано 0 из 9 пар</p></div></div>
+          <div id="relation-set" class="relation-set" aria-live="polite">R = ∅</div>
+          <div class="relation-actions"><button id="clear-button" type="button" class="quiet-button">Очистить R</button><button id="all-button" type="button" class="quiet-button">Выбрать все</button></div>
+          <p class="subset-reminder">Отношение — подмножество декартова произведения: <strong>R ⊆ A × A.</strong></p>
+        </section>
+
+        <section class="panel matrix-panel" aria-labelledby="matrix-title">
+          <div class="panel-head"><span class="view-number">3</span><div><h3 id="matrix-title">Матрица отношения</h3><p>Выбрана пара — 1, не выбрана — 0</p></div></div>
+          <div class="matrix-wrap"><table id="relation-matrix"><caption>Матрица отношения: строка задаёт первый элемент пары, столбец — второй</caption><thead></thead><tbody></tbody></table></div>
+          <p class="panel-note">Строка — первый элемент пары, столбец — второй.</p>
+        </section>
+
+        <section class="panel graph-panel" aria-labelledby="graph-title">
+          <div class="panel-head"><span class="view-number">4</span><div><h3 id="graph-title">Отношение в виде стрелок</h3><p>Стрелка x → y означает (x, y) ∈ R</p></div></div>
+          <div class="graph-frame"><svg id="relation-graph" viewBox="0 0 420 340" role="img" aria-labelledby="graph-svg-title graph-svg-desc"><title id="graph-svg-title">Ориентированный граф отношения R</title><desc id="graph-svg-desc">Граф меняется при выборе упорядоченных пар.</desc></svg></div>
+          <p class="panel-note">Петля у x означает (x, x) ∈ R.</p>
+        </section>
+
+        <section class="panel checks-panel" aria-labelledby="checks-title">
+          <div class="panel-head"><div><h3 id="checks-title">Какие свойства выполняются?</h3><p>Результаты меняются сразу после выбора пары.</p></div></div>
+          <div id="property-results" class="property-list" aria-live="polite" aria-relevant="additions text"></div>
+          <div id="structure-result" class="structure-result" aria-live="polite"></div>
+        </section>
+      </div>
+    </section>
+  </main>
+  <footer>Множества и отношения · интерактивный тренажёр</footer>
+</body>
+</html>
