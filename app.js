@@ -22,7 +22,7 @@ const RelationLogic = (() => {
     return {
       reflexive: {pass: reflexive, reason: reflexive ? 'Для каждого x ∈ A пара (x, x) входит в R.' : `Пары ${pair(missingLoop, missingLoop)} нет в R.`},
       irreflexive: {pass: irreflexive, reason: irreflexive ? 'Ни одна пара (x, x) не входит в R.' : `${pair(presentLoop, presentLoop)} входит в R: элемент находится в отношении с самим собой.`},
-      symmetric: {pass: symmetric, reason: symmetric ? 'Для каждой пары (x, y) в R есть обратная пара (y, x).' : `${pair(...symmetry)} входит в R, а ${pair(symmetry[1], symmetry[0])} — нет.`},
+      symmetric: {pass: symmetric, reason: symmetric ? 'Для каждой пары (x, y) в R есть обратная пара (y, x).' : `${pair(...symmetry)} входит в R, а ${pair(symmetry[1], symmetry[0])} – нет.`},
       antisymmetric: {pass: antisymmetric, reason: antisymmetric ? 'Нет двух различных элементов, связанных в обе стороны.' : `${pair(...antisymmetry)} и ${pair(antisymmetry[1], antisymmetry[0])} входят в R, хотя ${antisymmetry[0]} ≠ ${antisymmetry[1]}.`},
       transitive: {pass: transitive, reason: transitive ? 'Для каждой цепочки из двух пар есть необходимая третья пара.' : `${pair(transitivity[0], transitivity[1])} и ${pair(transitivity[1], transitivity[2])} входят в R, но ${pair(transitivity[0], transitivity[2])} отсутствует.`},
       equivalence: {pass: reflexive && symmetric && transitive, reason: reflexive && symmetric && transitive ? 'Выполняются рефлексивность, симметричность и транзитивность.' : `Нарушены свойства: ${[!reflexive && 'рефлексивность', !symmetric && 'симметричность', !transitive && 'транзитивность'].filter(Boolean).join(', ')}.`},
@@ -61,7 +61,7 @@ if (typeof document !== 'undefined') {
     {id:'symmetric',title:'Симметричность',subtitle:'Каждая стрелка имеет обратную',note:'Пары (a, b) и (b, a) входят в R. Уберите одну из них, чтобы нарушить симметричность.',pairs:[['a','b'],['b','a'],['c','c']]},
     {id:'antisymmetric',title:'Антисимметричность',subtitle:'Нет встречных стрелок между разными элементами',note:'Стрелка a → b есть, а обратной нет. Добавьте (b, a), чтобы нарушить антисимметричность.',pairs:[['a','a'],['a','b'],['b','b']]},
     {id:'transitive',title:'Транзитивность',subtitle:'Нужная третья пара присутствует',note:'Из (a, b) и (b, c) должна следовать (a, c). Уберите (a, c), чтобы увидеть нарушение.',pairs:[['a','b'],['b','c'],['a','c']]},
-    {id:'equivalence',title:'Отношение эквивалентности',subtitle:'Два класса эквивалентности',note:'Элементы a и b относятся к одному классу, c — к другому. Классы образуют разбиение A.',pairs:[['a','a'],['a','b'],['b','a'],['b','b'],['c','c']]},
+    {id:'equivalence',title:'Отношение эквивалентности',subtitle:'Два класса эквивалентности',note:'Элементы a и b относятся к одному классу, c – к другому. Классы образуют разбиение A.',pairs:[['a','a'],['a','b'],['b','a'],['b','b'],['c','c']]},
     {id:'partialOrder',title:'Отношение частичного порядка',subtitle:'Цепочка из трёх элементов',note:'Представьте a ≤ b ≤ c. Здесь присутствуют петли и пара (a, c), необходимая для транзитивности.',pairs:[['a','a'],['b','b'],['c','c'],['a','b'],['b','c'],['a','c']]}
   ];
   const state = {elements:['a','b','c'],relation:new Set(),highlight:null,example:'reflexive'};
@@ -93,7 +93,7 @@ if (typeof document !== 'undefined') {
   function renderControls(){
     const total=state.elements.length**2;
     $('set-notation').textContent=`A = {${state.elements.join(', ')}}`;
-    $('product-summary').textContent=`В A × A — ${total} упорядоченных пар`;
+    $('product-summary').textContent=`В A × A – ${total} упорядоченных пар`;
     $('relation-count').textContent=`Выбрано ${state.relation.size} из ${total} пар`;
     for(const btn of document.querySelectorAll('.set-button')) btn.setAttribute('aria-pressed',String(Number(btn.dataset.size)===state.elements.length));
     for(const btn of document.querySelectorAll('.pair-chip, #relation-matrix button')){
@@ -139,7 +139,7 @@ if (typeof document !== 'undefined') {
     }
     const structure=$('structure-result');structure.replaceChildren();
     const strong=document.createElement('strong'),text=document.createElement('span');
-    if(results.equivalence.pass){strong.textContent='Классы эквивалентности: ';text.textContent=RelationLogic.classes(state.elements,state.relation).map(g=>`{${g.join(', ')}}`).join('  ·  ')+' — они образуют разбиение A.';}
+    if(results.equivalence.pass){strong.textContent='Классы эквивалентности: ';text.textContent=RelationLogic.classes(state.elements,state.relation).map(g=>`{${g.join(', ')}}`).join('  ·  ')+' – они образуют разбиение A.';}
     else if(results.partialOrder.pass){strong.textContent='Отношение частичного порядка: ';text.textContent='между различными элементами нет встречных пар; можно проследить цепочки связанных элементов.';}
     else{strong.textContent='Проверяйте дальше: ';text.textContent='одно отношение может обладать несколькими свойствами сразу.';}
     structure.append(strong,text);
